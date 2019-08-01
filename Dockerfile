@@ -1,4 +1,4 @@
-FROM registry.centos.org/che-stacks/centos-stack-base:latest
+FROM centos:latest
 
 MAINTAINER Sebastien LANGOUREAUX <linuxworkgroup@hotmail.com>
 
@@ -8,8 +8,6 @@ ARG https_proxy
 ENV PUPPET_VERSION=5.3.7 \
     LANG=C.UTF-8 \
     PATH=$PATH:/opt/puppetlabs/puppet/bin
-
-USER root
     
 # Install ruby and require for beaker and puppet
 RUN \
@@ -41,7 +39,15 @@ RUN /opt/puppetlabs/puppet/bin/gem install beaker-hiera -v 0.1.1
 RUN yum install -y puppet-bolt-1.8.1 &&\
     yum clean all
 
-USER user
+# Che
+ADD https://raw.githubusercontent.com/disaster37/che-scripts/master/centos.sh
+RUN sh /tmp/centos.sh
+
+WORKDIR "/projects"
+VOLUME "/home/dev"
+
+CMD ["sleep", "infinity"]
+
 
 EXPOSE 8080
 
