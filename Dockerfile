@@ -12,7 +12,7 @@ ENV PUPPET_VERSION=5.3.7 \
 # Install ruby and require for beaker and puppet
 RUN \
     rpm -Uvh https://yum.puppet.com/puppet5/puppet5-release-el-7.noarch.rpm &&\
-    yum install -y make gcc-c++ libxml2 libxml2-devel libxslt-devel zlib-devel pdk git puppet-agent-${PUPPET_VERSION} &&\
+    yum install -y make gcc-c++ libxml2 libxml2-devel libxslt-devel zlib-devel pdk git puppet-agent-${PUPPET_VERSION} docker-client &&\
     yum clean all
 
 
