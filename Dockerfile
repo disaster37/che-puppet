@@ -40,7 +40,7 @@ RUN yum install -y puppet-bolt-1.8.1 &&\
     yum clean all
 
 # Che
-ADD https://raw.githubusercontent.com/disaster37/che-scripts/master/centos.sh
+ADD https://raw.githubusercontent.com/disaster37/che-scripts/master/centos.sh /tmp/centos.sh
 RUN sh /tmp/centos.sh
 
 WORKDIR "/projects"
