@@ -39,6 +39,13 @@ RUN /opt/puppetlabs/puppet/bin/gem install beaker-hiera -v 0.1.1
 RUN yum install -y puppet-bolt-1.8.1 &&\
     yum clean all
 
+# Install docker compose
+RUN \
+  curl -L "https://github.com/docker/compose/releases/download/1.24.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose &&\
+  chmod +x /usr/local/bin/docker-compose &&\
+  ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+  
+
 # Che
 ADD https://raw.githubusercontent.com/disaster37/che-scripts/master/centos.sh /tmp/centos.sh
 RUN sh /tmp/centos.sh
